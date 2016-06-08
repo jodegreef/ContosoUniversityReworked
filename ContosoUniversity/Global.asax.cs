@@ -7,6 +7,7 @@ using System.Web.Optimization;
 using System.Web.Routing;
 using ContosoUniversity.DAL;
 using System.Data.Entity.Infrastructure.Interception;
+using ContosoUniversity.Infrastructure;
 
 namespace ContosoUniversity
 {
@@ -20,6 +21,14 @@ namespace ContosoUniversity
             BundleConfig.RegisterBundles(BundleTable.Bundles);
             DbInterception.Add(new SchoolInterceptorTransientErrors());
             DbInterception.Add(new SchoolInterceptorLogging());
+
+            UseFeatureFolders();
+        }
+
+        private void UseFeatureFolders()
+        {
+            ViewEngines.Engines.Clear();
+            ViewEngines.Engines.Add(new FeatureViewLocationRazorViewEngine());
         }
     }
 }
