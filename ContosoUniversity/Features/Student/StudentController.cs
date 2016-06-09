@@ -23,7 +23,14 @@ namespace ContosoUniversity.Features.Student
             return View(model);
         }
 
-       
+        public ViewResult Index(Index.Query query)
+        {
+            var model = _mediator.Send(query);
+
+            return View(model);
+        }
+
+
     }
 
 }

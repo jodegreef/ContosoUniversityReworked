@@ -1,5 +1,6 @@
 ﻿using Autofac;
 using Autofac.Features.Variance;
+using ContosoUniversity.DAL;
 using MediatR;
 using System;
 using System.Collections.Generic;
@@ -41,6 +42,9 @@ namespace ContosoUniversity.Infrastructure
                 var c = ctx.Resolve<IComponentContext>();
                 return t => (IEnumerable<object>)c.Resolve(typeof(IEnumerable<>).MakeGenericType(t));
             });
+
+            //db context
+            builder.Register<SchoolContext>(c => new SchoolContext());
 
 
             if (additionalRegistrations != null)

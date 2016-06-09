@@ -170,6 +170,7 @@
     <Compile Include="DAL\SchoolInitializer.cs" />
     <Compile Include="DAL\SchoolInterceptorLogging.cs" />
     <Compile Include="DAL\SchoolInterceptorTransientErrors.cs" />
+    <Compile Include="Features\Student\Index.cs" />
     <Compile Include="Features\Student\Test.cs" />
     <Compile Include="Features\Student\StudentController.cs" />
     <Compile Include="Global.asax.cs">
