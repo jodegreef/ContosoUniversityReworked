@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using ContosoUniversity.DAL;
+using ContosoUniversity.Infrastructure.Mapping;
 using MediatR;
 using PagedList;
 using System;
@@ -28,16 +29,28 @@ namespace ContosoUniversity.Features.Student
             public string CurrentFilter { get; set; }
             public string SearchString { get; set; }
 
-            public IPagedList<ContosoUniversity.Models.Student> Students { get; set; }
+            public IPagedList<Model> Students { get; set; }
         }
+
+        public class Model
+        {
+            public int ID { get; set; }
+            [Display(Name = "First Name")]
+            public string FirstMidName { get; set; }
+            public string LastName { get; set; }
+            public DateTime EnrollmentDate { get; set; }
+        }
+
 
         public class QueryHandler : IRequestHandler<Query, Result>
         {
             private readonly SchoolContext _db;
+            private readonly MapperConfiguration _config;
 
-            public QueryHandler(SchoolContext db)
+            public QueryHandler(SchoolContext db, MapperConfiguration config)
             {
                 _db = db;
+                _config = config;
             }
 
             public Result Handle(Query message)
@@ -86,7 +99,7 @@ namespace ContosoUniversity.Features.Student
 
                 int pageSize = 3;
                 int pageNumber = (message.Page ?? 1);
-                model.Students = students.ToPagedList(pageNumber, pageSize);
+                model.Students = students.ProjectToPagedList<Model>(_config, pageNumber, pageSize);
 
                 return model;
 

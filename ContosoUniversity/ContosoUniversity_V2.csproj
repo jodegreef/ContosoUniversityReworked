@@ -171,6 +171,7 @@
     <Compile Include="DAL\SchoolInterceptorLogging.cs" />
     <Compile Include="DAL\SchoolInterceptorTransientErrors.cs" />
     <Compile Include="Features\Student\Index.cs" />
+    <Compile Include="Features\Student\MappingProfile.cs" />
     <Compile Include="Features\Student\Test.cs" />
     <Compile Include="Features\Student\StudentController.cs" />
     <Compile Include="Global.asax.cs">
@@ -178,6 +179,7 @@
     </Compile>
     <Compile Include="Infrastructure\Bootstrap.cs" />
     <Compile Include="Infrastructure\FeatureViewLocationRazorViewEngine.cs" />
+    <Compile Include="Infrastructure\Mapping\MappingExtensions.cs" />
     <Compile Include="Logging\ILogger.cs" />
     <Compile Include="Logging\Logger.cs" />
     <Compile Include="Migrations\201411021828194_InitialCreate.cs" />

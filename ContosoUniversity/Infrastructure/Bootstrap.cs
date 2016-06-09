@@ -1,5 +1,6 @@
 ﻿using Autofac;
 using Autofac.Features.Variance;
+using AutoMapper;
 using ContosoUniversity.DAL;
 using MediatR;
 using System;
@@ -47,6 +48,9 @@ namespace ContosoUniversity.Infrastructure
             builder.Register<SchoolContext>(c => new SchoolContext());
 
 
+            //automapper
+            RegisterAutomapper(builder);
+
             if (additionalRegistrations != null)
                 additionalRegistrations.Invoke(builder);
 
@@ -57,5 +61,22 @@ namespace ContosoUniversity.Infrastructure
             return container;
         }
 
+        private static void RegisterAutomapper(ContainerBuilder builder)
+        {
+            var profiles =
+                from t in Assembly.GetExecutingAssembly().GetTypes()
+                where typeof(Profile).IsAssignableFrom(t)
+                select (Profile)Activator.CreateInstance(t);
+
+            builder.Register(ctx => new MapperConfiguration(cfg =>
+            {
+                foreach (var profile in profiles)
+                {
+                    cfg.AddProfile(profile);
+                }
+            }));
+
+            builder.Register(ctx => ctx.Resolve<MapperConfiguration>().CreateMapper()).As<IMapper>();
+        }
     }
 }
