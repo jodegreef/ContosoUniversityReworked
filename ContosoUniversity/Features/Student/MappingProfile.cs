@@ -11,6 +11,7 @@ namespace ContosoUniversity.Features.Student
         protected override void Configure()
         {
             CreateMap<Models.Student, Index.Model>();
+            CreateMap<Create.Command, Models.Student>(MemberList.Source);
         }
     }
 }

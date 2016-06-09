@@ -170,6 +170,7 @@
     <Compile Include="DAL\SchoolInitializer.cs" />
     <Compile Include="DAL\SchoolInterceptorLogging.cs" />
     <Compile Include="DAL\SchoolInterceptorTransientErrors.cs" />
+    <Compile Include="Features\Student\Create.cs" />
     <Compile Include="Features\Student\Index.cs" />
     <Compile Include="Features\Student\MappingProfile.cs" />
     <Compile Include="Features\Student\Test.cs" />
@@ -178,8 +179,11 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Infrastructure\Bootstrap.cs" />
+    <Compile Include="Infrastructure\ControllerExtensions.cs" />
     <Compile Include="Infrastructure\FeatureViewLocationRazorViewEngine.cs" />
+    <Compile Include="Infrastructure\LinkBuilder.cs" />
     <Compile Include="Infrastructure\Mapping\MappingExtensions.cs" />
+    <Compile Include="Infrastructure\UrlHelperExtensions.cs" />
     <Compile Include="Logging\ILogger.cs" />
     <Compile Include="Logging\Logger.cs" />
     <Compile Include="Migrations\201411021828194_InitialCreate.cs" />
@@ -232,6 +236,7 @@
     <Content Include="Features\Web.config" />
     <Content Include="Features\Student\Test.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="Scripts\formPostInterception.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
